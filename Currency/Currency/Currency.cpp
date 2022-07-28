@@ -1,81 +1,97 @@
-// Currency.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <vector>
 using namespace std;
+
+void centsToCurrencyConverter(vector<int> values, vector<string> currency_value_names) {
+	int cents{ 0 };
+
+	cout << "Enter an amount: ";
+
+	cin >> cents;
+
+	int balance = cents;
+	cout << "You can provide change for this change as follows:" << endl;
+
+	for (int i = 0; i < values.size(); i++)
+	{
+		int currency = balance / values[i];
+		balance %= values[i];
+		cout << currency_value_names[i] << ": " << currency << endl;
+	}
+}
+
+void printCurrencyNameBanner(string currency_name) {
+	cout << "===============================" << currency_name << "===============================" << endl;
+}
+
 
 int main()
 {
-	int dollar_cents{};
-	const int dollar_value{ 100 };
-	const int quarter_value{ 25 };
-	const int dimes_value{ 10 };
-	const int nickles_value{ 5 };
-	cout << "===============================DOLLARS===============================";
-	cout << "\nEnter an amount in dollar cents: ";
+	vector<int> dollar_values = { 10000,5000,2000,1000,100,25,10,5,1 };
+	vector <string> dollar_values_names = {
+		"hundred dollars",
+		"fifty dollars",
+		"twenty dollars",
+		"ten dollars",
+		"one dollars",
+		"quarters",
+		"dimes",
+		"nickles",
+		"pennies"
+	};
 
-	cin >> dollar_cents;
+	vector<int> euro_values = { 50000,20000,10000,5000,2000,1000,500,100,50,20,10,5,2,1 };
+	vector <string> euro_values_names = {
+		"five hundred euro's",
+		"two hundred euro's",
+		"one hundred euro's",
+		"fifty euro's",
+		"twenty euro's",
+		"ten euro's",
+		"five euro's",
+		"one euro's",
+		"fifty cents",
+		"twenty cents",
+		"ten cents",
+		"five cents",
+		"two cents",
+		"one cents"
+	};
 
-	int balance = dollar_cents;
+	bool exiting_application = false;
 
-	int dollars = balance / dollar_value;
-	balance = dollar_cents % dollar_value;
+	char input{ '0' };
 
-	int quarters = balance / quarter_value;
-	balance %= quarter_value;
+	while (exiting_application == false) {
+		cout << "Please select a currency you would like to convert." << endl;
+		cout << "1. dollars" << endl;;
+		cout << "2. euro's" << endl;
+		cout << "0. to exit application" << endl;
+		cin >> input;
 
-	int dimes = balance / dimes_value;
-	balance %= dimes_value;
-
-	int nickles = balance / nickles_value;
-	balance %= nickles_value;
-
-	int pennies = balance;
-
-	cout << "You can provide change for this change as follows: "
-		<< "\ndollars: " << dollars << "\nquarters: " << quarters << "\ndimes: " << dimes << "\nnickles: " << nickles
-		<< "\npennies: " << pennies;
-
-	cout << "\n===============================EUROS===============================\n";
-
-	int euro_cents{};
-	const int one_euro_value{ 100 };
-	const int fifty_cent_value{ 50 };
-	const int twenty_cent_value{ 20 };
-	const int ten_cent_value{ 10 };
-	const int five_cent_value{ 5 };
-	const int two_cent_value{ 2 };
-
-	cout << "Enter an amount in euro cents: ";
-
-	cin >> euro_cents;
-
-	balance = euro_cents;
-
-	int one_euros = balance / one_euro_value;
-	balance = euro_cents % one_euro_value;
-
-	int fifty_cents = balance / fifty_cent_value;
-	balance %= fifty_cent_value;
-
-	int twenty_five_cents = balance / twenty_cent_value;
-	balance %= twenty_cent_value;
-
-	int ten_cents = balance / ten_cent_value;
-	balance %= ten_cent_value;
-
-	int five_cents = balance / five_cent_value;
-	balance %= five_cent_value;
-
-	int two_cents = balance / two_cent_value;
-	balance %= two_cent_value;
-
-	int one_cents = balance;
-
-	cout << "You can provide change for this change as follows: "
-		<< "\none euro's: " << one_euros << "\nfifty cents: " << fifty_cents
-		<< "\ntwenty cents: " << twenty_five_cents << "\nten cents: " << ten_cents << "\nfive cents: " << five_cents
-		<< "\ntwo cents: " << two_cents << "\none cents: " << one_cents;
+		switch (input)
+		{
+		case '1':
+			printCurrencyNameBanner("DOLLAR");
+			centsToCurrencyConverter(dollar_values, dollar_values_names);
+			printCurrencyNameBanner("DOLLAR");
+			break;
+		case '2':
+			printCurrencyNameBanner("EURO'S");
+			centsToCurrencyConverter(euro_values, euro_values_names);
+			printCurrencyNameBanner("EURO'S");
+			break;
+		case '0':
+			cout << "Exiting application." << endl;
+			exiting_application = true;
+			break;
+		default:
+			cout << "==============================================================" << endl;
+			cout << "Please provide a valid input." << endl;
+			cout << "==============================================================" << endl;
+			break;
+		}
+	}
 
 	cout << endl;
 	return 0;
