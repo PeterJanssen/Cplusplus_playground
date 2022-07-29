@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Currency", "Currency\Currency.vcxproj", "{6775A8CB-345D-4101-AB3B-EC61EA1AE608}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Algorithms", "..\Algorithms\Algorithms\Algorithms.vcxproj", "{EF7DD79F-4A0B-4F6A-9F7C-7365DAA0152D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Algorithms", "Algorithms\Algorithms.vcxproj", "{EF7DD79F-4A0B-4F6A-9F7C-7365DAA0152D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
