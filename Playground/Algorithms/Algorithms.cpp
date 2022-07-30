@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <string>
 #include <cmath>
 
@@ -64,6 +65,29 @@ void pyramid() {
 	cout << pyramid;
 }
 
+void vowelCounter() {
+	string strings_to_count_vowels_in = "LEt's coUnt the AmoUnt of vowels in this string!";
+	transform(strings_to_count_vowels_in.begin(),
+		strings_to_count_vowels_in.end(),
+		strings_to_count_vowels_in.begin(),
+		tolower);
+	
+	int vowel_count{ 0 };
+
+	const vector<char> vowels{ 'a', 'e','i','o','u' };
+
+	for (char string_to_count_vowel : strings_to_count_vowels_in) {
+		for (char vowel : vowels) {
+			if (string_to_count_vowel == vowel) {
+				vowel_count++;
+			}
+		}
+	}
+
+
+	cout << "The amount of vowels contained in the sentence #" << strings_to_count_vowels_in << "#: " << vowel_count << endl;
+}
+
 void printAlgorithmNameBanner(string algorithm_name) {
 	cout << "===============================" << algorithm_name << "===============================" << endl;
 }
@@ -78,7 +102,7 @@ void printAlgorithmChoices(vector<string> algorithm_names) {
 
 int main()
 {
-	vector<string> algorithm_names{ "FIZZBUZZ", "PYRAMID" };
+	vector<string> algorithm_names{ "FIZZBUZZ", "PYRAMID","VOWELCOUNTER" };
 
 	bool exiting_application = false;
 
@@ -112,6 +136,14 @@ int main()
 			);
 			pyramid();
 			printAlgorithmNameBanner(algorithm_names.at(1));
+			break;
+		case '3':
+			printAlgorithmNameBanner(algorithm_names.at(2));
+			printAlgorithmInfo(
+				"This algorithm returns the number of vowels ('a', 'e', 'i', 'o', 'u') used in a #string#.\n--- Example ---\n"
+			);
+			vowelCounter();
+			printAlgorithmNameBanner(algorithm_names.at(2));
 			break;
 		case '0':
 			cout << "Exiting application." << endl;
