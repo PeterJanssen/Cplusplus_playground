@@ -15,7 +15,7 @@ void printInvalidInputErrorMessage(string message) {
 		<< "==============================================================" << endl;
 }
 
-void printAlgorithmInfo(string info) {
+void printChoiceInfo(string info) {
 	cout << info << endl;
 }
 
@@ -71,7 +71,7 @@ void vowelCounter() {
 		strings_to_count_vowels_in.end(),
 		strings_to_count_vowels_in.begin(),
 		tolower);
-	
+
 	int vowel_count{ 0 };
 
 	const vector<char> vowels{ 'a', 'e','i','o','u' };
@@ -84,8 +84,27 @@ void vowelCounter() {
 		}
 	}
 
-
 	cout << "The amount of vowels contained in the sentence #" << strings_to_count_vowels_in << "#: " << vowel_count << endl;
+}
+
+void reverseArray() {
+	vector<string> string_array{ "This is the first sentence!", "Second sentence.","Third sentence." };
+	vector<string> reversed_string_array{};
+
+	for (int i = string_array.size() - 1; i >= 0; i--) {
+		reversed_string_array.push_back(string_array[i]);
+	}
+
+	string original_string = "";
+	string reversed_string = "";
+
+	for (int i = 0; i < reversed_string_array.size(); i++) {
+		original_string.append("\"" + string_array[i] + "\", ");
+		reversed_string.append("\"" + reversed_string_array[i] + "\", ");
+	}
+
+	cout << "Original: [ " << original_string << " ]" << endl;
+	cout << "Reversed: [ " << reversed_string << " ]" << endl;
 }
 
 void printAlgorithmNameBanner(string algorithm_name) {
@@ -102,7 +121,7 @@ void printAlgorithmChoices(vector<string> algorithm_names) {
 
 int main()
 {
-	vector<string> algorithm_names{ "FIZZBUZZ", "PYRAMID","VOWELCOUNTER" };
+	vector<string> algorithm_names{ "FIZZBUZZ", "PYRAMID","VOWEL_COUNTER", "REVERSE_ARRAY" };
 
 	bool exiting_application = false;
 
@@ -119,7 +138,7 @@ int main()
 		{
 		case '1':
 			printAlgorithmNameBanner(algorithm_names.at(0));
-			printAlgorithmInfo(
+			printChoiceInfo(
 				"This algorithm prints the numbers from 1 to 20.\n"
 				"But for multiples of three prints 'fizz' instead of the number.\n"
 				"For the multiples of five prints 'buzz'.\n"
@@ -131,7 +150,7 @@ int main()
 			break;
 		case '2':
 			printAlgorithmNameBanner(algorithm_names.at(1));
-			printAlgorithmInfo(
+			printChoiceInfo(
 				"This algorithm prints a pyramid with 10 rows.\n--- Example ---\n"
 			);
 			pyramid();
@@ -139,14 +158,23 @@ int main()
 			break;
 		case '3':
 			printAlgorithmNameBanner(algorithm_names.at(2));
-			printAlgorithmInfo(
+			printChoiceInfo(
 				"This algorithm returns the number of vowels ('a', 'e', 'i', 'o', 'u') used in a #string#.\n--- Example ---\n"
 			);
 			vowelCounter();
 			printAlgorithmNameBanner(algorithm_names.at(2));
 			break;
+			break;
+		case '4':
+			printAlgorithmNameBanner(algorithm_names.at(3));
+			printChoiceInfo(
+				"This algorithm returns a reversed array.\n--- Example ---\n"
+			);
+			reverseArray();
+			printAlgorithmNameBanner(algorithm_names.at(3));
+			break;
 		case '0':
-			cout << "Exiting application." << endl;
+			printChoiceInfo("Exiting application. Goodbye!");
 			exiting_application = true;
 			break;
 		default:
